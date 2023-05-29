@@ -4,6 +4,7 @@
 
 @import "tailwindcss/components";
 @import "./components/resumen.css";
+@import "./components/galeria.css";
 
 @import "tailwindcss/utilities";
 
