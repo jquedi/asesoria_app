@@ -1,0 +1,27 @@
+.utilidad {
+    flex: 1 1 calc(15% - 4%);
+    max-width: calc(15% - 4%);
+    min-width: 100px;
+    margin: 2%;
+    background-color: #f0f0f0;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    border-radius: 20%;
+    position: relative;
+    box-sizing: border-box;
+}
+.utilidad::before {
+    content: '';
+    display: block;
+    padding-top: 100%; /* Esto mantendrá la relación de aspecto de 1:1 */
+}
+
+.utilidad-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
