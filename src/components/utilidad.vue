@@ -1,4 +1,5 @@
 <script setup>
+import todo_list from './todo_list.vue'
 defineProps({
   msg: {
     type: String,
@@ -10,7 +11,7 @@ defineProps({
 <template>
   <div>
     <div class="utilidad-content">
-      <h1>{{ msg }}</h1>
+      <todo_list v-if="msg === 'todo_list'" />
     </div>
   </div>
 </template>
