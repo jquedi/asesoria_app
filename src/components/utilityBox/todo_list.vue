@@ -4,12 +4,20 @@
 <template>
     <div class="todo-box">
         <div class="header">
-            <h3>To Do List</h3>
+            <h3>Tareas</h3>
         </div>
         <ul class="todo-list">
-            <li class="task">
-            <span class="checkbox"></span>
-            <p class="task-details">Llamar a Fulano...</p>
+            <li class="task" id="borrar">
+            <span class="checkbox">
+                <div class="cortinaCont">
+                    <div class="cortina"></div>
+                </div> 
+                <div class="tick1">
+                </div>
+                <div class="tick2">
+                </div>
+            </span>
+            <p class="task-details">Llamar a Fulano... <div class="tachar"></div></p>
             <span class="priority high"></span>
             </li>
             <li class="task">

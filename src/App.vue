@@ -7,8 +7,8 @@ import utilidad from './components/utilidad.vue'
     <div id="contenedorUtilidades">
       
       <utilidad class="utilidad" msg="todo_list" />
-      <utilidad class="utilidad" msg="util 2" />
-      <utilidad class="utilidad" msg="util 3" />
+      <utilidad class="utilidad" msg="calendario" />
+      <utilidad class="utilidad" msg="clientes" />
       <utilidad class="utilidad" msg="util 4" />
       
       <utilidad class="utilidad" msg="util 5" />
