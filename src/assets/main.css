@@ -5,6 +5,10 @@
 @import "tailwindcss/components";
 @import "./components/utilidad.css";
 
+@import "./components/menuNav.css";
+
+@import "./components/login.css";
+
 @import "tailwindcss/utilities";
 
 #contenedorUtilidades {
@@ -15,4 +19,28 @@
   justify-content: space-around; /* Esto distribuirá el espacio restante alrededor de los elementos */
   align-items: flex-start; /* Alinea los elementos al principio del contenedor */
   max-width: 100%; /* Ancho máximo del contenedor */
+}
+#app {
+  display: grid;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  overflow-y: auto;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(0deg, #969696 14%, #6e7399 51%);
+  border-radius: 15px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(13deg, #6e7399 14%, #969696 51%);
+}
+::-webkit-scrollbar-track {
+  background: #d6c9c9;
+  border-radius: 15px;
+  box-shadow: inset 7px 0px 30px #f0f0f0;
 }

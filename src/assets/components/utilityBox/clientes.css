@@ -39,9 +39,11 @@
 @keyframes abrirFase2 {
   from {
     transform: scale(0.35) translate(-74%, -50%);
+    opacity: 1;
   }
   to {
     transform: scale(1) translate(0%, 0%);
+    opacity: 1;
   }
 }
 

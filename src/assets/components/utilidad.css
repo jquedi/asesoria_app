@@ -1,6 +1,8 @@
 @import "./utilityBox/todo_list.css";
 @import "./utilityBox/calendario.css";
 @import "./utilityBox/clientes.css";
+@import "./utilityBox/notas.css";
+@import "./utilityBox/archivo.css";
 
 
 
@@ -9,8 +11,8 @@
     max-width: calc(15% - 4%);
     min-width: 100px;
     margin: 2%;
-    background-color: #f0f0f0;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    background-color: theme('colores.fondo3');
+    box-shadow: theme('colores.boxShadow1');
     border-radius: 20%;
     position: relative;
     box-sizing: border-box;
@@ -30,4 +32,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+
+#notasDiv {
+    border-radius: 25%;
 }

@@ -1,0 +1,283 @@
+.notas-box {
+    z-index: 2;
+    background-color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 30%;
+    transition: transform 0.3s ease;
+}
+.notas-box:hover {
+    transform: translate(-7px, -7px);
+}
+
+.text-notas{
+    position: relative;
+    top: 0%;
+    z-index: 2;
+}
+.text-notas2{
+    position: relative;
+    top: 40%;
+    opacity: 0;
+}
+.text-notas2-2 {
+    position: relative;
+    width: 124%;
+    top: -18%;
+    left: 69%;
+    transform: rotate(-45deg);
+}
+
+.fondoNota{
+    position: absolute;
+    width: 100%;
+}
+.fondoNota2{
+    width: 100%;
+    position: absolute;
+    bottom: 0%;
+    z-index: 2;
+}
+
+.cls-1 {
+    fill: #ffd66d;
+  }
+
+.cls-2 {
+fill: #ffd6a9;
+}
+
+.cls-3 {
+fill: #ff93ad;
+}
+
+.cls-4 {
+fill: #bababa;
+}
+
+.cls-5 {
+fill: #2c2c2c;
+}
+#Layer_2 {
+width: 40%;
+position: absolute;
+top: 5%;
+left: 30%;
+}
+
+.borrarLinea {
+    position: absolute;
+    top: -5%;
+    left: -62%;
+    width: 83%;
+    height: 75%;
+    overflow: hidden;
+    z-index: 1;
+    transform: rotate(45deg);
+    /* border: solid;
+    border-top-color: #ff93ad;
+    border-left: none; */
+}
+
+.notas-box:hover .fondoNota2 {
+    animation: pasarNotaFase1 2s 0s forwards, pasarNotaFase2 1s 1.2s forwards;
+    transform-origin: 0% 0%;
+}
+.notas-box:hover #Layer_2 {
+    animation: pasarNotaFase3 2s 0.6s forwards;
+    transform-origin: 100% 0%;
+}
+.notas-box:hover .borrarLinea {
+    animation: pasarNotaFase4 2s 0.6s forwards;
+}
+.notas-box:hover .text-notas2-2 {
+    animation: pasarNotaFase5 2s 0.6s forwards;
+}
+
+@keyframes pasarNotaFase1 {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(60deg) translate(0%, 40%);
+    }
+}
+@keyframes pasarNotaFase2 {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+@keyframes pasarNotaFase3 {
+    0% {
+        transform: rotate(0deg);
+    }
+    10% {
+        transform: rotate(70deg);
+    }
+    40% {
+        transform: rotate(70deg) translate(86%, 829%);
+    }
+    45% {
+        transform: rotate(70deg) translate(81%, 470%);
+    }
+    50% {
+        transform: rotate(40deg) translate(15%, 588%);
+    }
+    55% {
+        transform: rotate(40deg) translate(15%, 690%);
+    }
+    60% {
+        transform: rotate(115deg) translate(163%, 84%);
+    }
+    65% {
+        transform: rotate(115deg) translate(150%, -38%);
+    }
+    70% {
+        transform: rotate(53deg) translate(73%, 504%);
+    }
+    75% {
+        transform: rotate(53deg) translate(110%, 49%);
+    }
+    100% {
+        transform: rotate(0deg);
+    }
+}
+@keyframes pasarNotaFase4 {
+    0% {
+        top: -5%;
+        left: -62%;
+        width: 83%;
+        height: 75%;
+        transform: rotate(45deg);
+    }
+    40% {
+        top: -5%;
+        left: -62%;
+        width: 83%;
+        height: 75%;
+        transform: rotate(45deg);
+    }
+    45% {
+        top: -5%;
+        left: -44%;
+        width: 83%;
+        height: 75%;
+        transform: rotate(45deg);
+    }
+    50% {
+        top: -16%;
+        left: -38%;
+        width: 83%;
+        height: 75%;
+        transform: rotate(67deg);
+    }
+    55% {
+        top: -16%;
+        left: -38%;
+        width: 90%;
+        height: 75%;
+        transform: rotate(67deg);
+    }
+    60% {
+        top: -16%;
+        left: -38%;
+        width: 90%;
+        height: 75%;
+        transform: rotate(67deg);
+    }
+    65% {
+        top: -16%;
+        left: -38%;
+        width: 99%;
+        height: 74%;
+        transform: rotate(67deg);
+    }
+    70% {
+        top: -16%;
+        left: -38%;
+        width: 99%;
+        height: 74%;
+        transform: rotate(67deg);
+    }
+    75% {
+        top: -16%;
+        left: -38%;
+        width: 146%;
+        height: 103%;
+        transform: rotate(67deg);
+    }
+    100% {
+        top: -16%;
+        left: -38%;
+        width: 146%;
+        height: 103%;
+        transform: rotate(67deg);
+    }
+}
+@keyframes pasarNotaFase5 {
+    0% {
+        width: 124%;
+        top: -18%;
+        left: 69%;
+        transform: rotate(-45deg);
+    }
+    40% {
+        width: 124%;
+        top: -18%;
+        left: 69%;
+        transform: rotate(-45deg);
+    }
+    45% {
+        width: 124%;
+        top: 0%;
+        left: 53%;
+        transform: rotate(-45deg);
+    }
+    50% {
+        width: 124%;
+        top: -12%;
+        left: 49%;
+        transform: rotate(-67deg);
+    }
+    55% {
+        width: 115%;
+        top: -8%;
+        left: 47%;
+        transform: rotate(-67deg);
+    }
+    60% {
+        width: 115%;
+        top: -8%;
+        left: 47%;
+        transform: rotate(-67deg);
+    }
+    65% {
+        width: 104%;
+        top: -3%;
+        left: 46%;
+        transform: rotate(-67deg);
+    }
+    70% {
+        width: 104%;
+        top: -3%;
+        left: 46%;
+        transform: rotate(-67deg);
+    }
+    75% {
+        width: 69%;
+        top: 29%;
+        left: 32%;
+        transform: rotate(-67deg);
+    }
+    100% {
+        width: 69%;
+        top: 29%;
+        left: 32%;
+        transform: rotate(-67deg);
+    }
+}

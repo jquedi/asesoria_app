@@ -1,27 +1,16 @@
 <script setup>
-import utilidad from './components/utilidad.vue'
+import menuNav from './components/menuNav.vue'
+import login from './components/login.vue'
 </script>
 
 <template>
-  <header>
-    <div id="contenedorUtilidades">
-      
-      <utilidad class="utilidad" msg="todo_list" />
-      <utilidad class="utilidad" msg="calendario" />
-      <utilidad class="utilidad" msg="clientes" />
-      <utilidad class="utilidad" msg="util 4" />
-      
-      <utilidad class="utilidad" msg="util 5" />
-      <utilidad class="utilidad" msg="util 6" />
-      <utilidad class="utilidad" msg="util 7" />
-      <utilidad class="utilidad" msg="util 8" />
-      
-      <utilidad class="utilidad" msg="util 9" />
-      <utilidad class="utilidad" msg="util 10" />
-      <utilidad class="utilidad" msg="util 11" />
-      <utilidad class="utilidad" msg="util 12" />
-    </div>
-  </header>
+  
+  <!-- <login/> -->
+
+  <menuNav id="menuNav" class="fixed w-90% h-90% bg-blue-400 z-20" />
+  
+  <RouterView />
+  
 </template>
 
 <style scoped>
