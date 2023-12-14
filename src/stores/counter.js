@@ -12,7 +12,7 @@ export const useCounterStore = defineStore('counter', () => {
 })
 
 export const datosCliente = defineStore('datosCliente', () => {
-  const nombre = ref("Manolo")
+  const nombre = ref(null)
   function cambiarNombre(val){
     nombre.value = val
   }
