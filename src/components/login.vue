@@ -2,9 +2,8 @@
 import { db, auth } from '/workspaces/asesoria_app/src/firebase.js';
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { doc, getDoc } from "firebase/firestore";
-import { datosCliente } from '@/stores/counter'
+import { datosCliente } from '@/stores/counter';
 
-const jwt = 'jsonwebtoken';
 </script>
 
 <template>
@@ -41,23 +40,24 @@ export default {
             mantener: false,
             uid: "",
             token: "",
-            SECRET_KEY: ""
         }
     },
     watch: {
     },
     methods: {
-        crearToken(){
-            this.SECRET_KEY = "1234";
-            this.token = jwt.sign(this.usuario, this.SECRET_KEY, { expiresIn: '24h' });
-            console.log(this.token);
-            // localStorage.setItem('token', this.token);
-        },
         async iniciarSesion() {
             try {
                 const userCredential = await signInWithEmailAndPassword(auth, this.usuario, this.contraseña);
                 // El usuario ha iniciado sesión, ahora puedes obtener el UID del usuario.
                 this.uid = userCredential.user.uid;
+                // Obtener el Firebase ID token
+                userCredential.user.getIdToken().then((idToken) => {
+                    this.token = idToken;
+                    // Aquí puedes almacenar el token en localStorage si deseas mantener la sesión
+                    if (this.mantener) {
+                        localStorage.setItem('token', idToken);
+                    }
+                });
                 // Llama a la función para obtener los datos adicionales del usuario de Firestore.
                 await this.obtenerDatosUsuario(this.uid);
             } catch (error) {
@@ -73,7 +73,6 @@ export default {
             if (docSnap.exists()) {
                 // Aquí tienes acceso al nombre de usuario almacenado en Firestore.
                 this.datos.cambiarNombre(docSnap.data().nombre);
-                this.crearToken();
                 this.$emit('positiveAuth', true);
                 // Procede a la siguiente parte de tu aplicación.
             } else {
@@ -85,15 +84,10 @@ export default {
 
     },
     mounted() {
-        // function verificarToken(){
-        //     console.log(localStorage.getItem('token'))
+        // const token = localStorage.getItem('token');
+        // if (token) {
+        //     // Verificar el token y autenticar al usuario
         // }
-        // function borrartoken(){
-        //     localStorage.removeItem('token')
-        // }
-        // verificarToken()
-        // borrartoken()
-        // verificarToken()
     },
     created(){
     }

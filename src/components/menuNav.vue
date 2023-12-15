@@ -3,6 +3,8 @@ import resumenIcon from './icons/inicioIcon.vue'
 import estadisticasIcon from './icons/estadisticasIcon.vue'
 import facturarIcon from './icons/facturarIcon.vue'
 import ajustesIcon from './icons/ajustesIcon.vue'
+
+import { auth } from '/workspaces/asesoria_app/src/firebase.js';
 </script>
 
 <template>
@@ -50,6 +52,12 @@ export default {
         }
     },
     methods: {
+        
+        cerrarSesion() {
+            localStorage.removeItem('token');
+            // Cerrar sesión en Firebase
+            auth.signOut();
+        },
         activar(val){
             var doc = document.getElementById(val);
             var indicador = document.getElementById("indicador");
@@ -73,6 +81,7 @@ export default {
                 }else{
                     if(val == "ajustes"){
                         indicador.style.left = "calc(87.5% - 35px)";
+                        this.cerrarSesion();
                     }else{
                         indicador.style.left = "calc(12.5% - 35px)";
                     }
