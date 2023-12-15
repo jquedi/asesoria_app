@@ -1,0 +1,55 @@
+.clienteTool {
+    width: 25%;
+    height: fit-content;
+    min-width: 250px;
+    min-height: 140px;
+    max-width: 475px;
+    max-height: 200px;
+    border-radius: 50px;
+    margin: 50px;
+    background-color: aliceblue;
+    padding: 1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+.imagenClienteTool {
+    width: 40%;
+    border-radius: 10%;
+    border: solid 1px black;
+}
+
+.datosClienteTool {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-grow: 1;
+    font-size: 0.8vw;
+}
+.datosClienteToolSub {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    color: black;
+}
+.datosClienteToolSub2 {
+    flex: 1 1 0%;
+    text-align: center;
+    border-right: solid 2px;
+    margin-bottom: 10px;
+}
+.datosClienteToolSub3 {
+    flex: 1 1 0%;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+@media screen and (max-width: 1000px) {
+    .datosClienteTool {
+        font-size: 8px; /* Tamaño mínimo de fuente */
+    }
+}

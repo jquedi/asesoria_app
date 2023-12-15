@@ -1,6 +1,6 @@
 <script setup>
 import utilidad from './utilidad.vue'
-import clientes from './tools/clientes.vue'
+import clientes from './tools/clientesTools.vue'
 </script>
 
 <template>
