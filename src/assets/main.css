@@ -9,6 +9,10 @@
 
 @import "./components/login.css";
 
+@import "./components/tool.css";
+
+@import "./components/comunes/botonCerrar.css";
+
 @import "tailwindcss/utilities";
 
 #contenedorUtilidades {

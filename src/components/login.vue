@@ -84,10 +84,6 @@ export default {
 
     },
     mounted() {
-        // const token = localStorage.getItem('token');
-        // if (token) {
-        //     // Verificar el token y autenticar al usuario
-        // }
     },
     created(){
     }

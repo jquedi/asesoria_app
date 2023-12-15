@@ -5,7 +5,7 @@ import { datosCliente } from '@/stores/counter'
 
 import { db, auth } from '/workspaces/asesoria_app/src/firebase.js';
 import { doc, getDoc } from "firebase/firestore";
-import { onAuthStateChanged, signInWithCustomToken } from "firebase/auth";
+import { onAuthStateChanged } from "firebase/auth";
 </script>
 
 <template>
@@ -14,7 +14,7 @@ import { onAuthStateChanged, signInWithCustomToken } from "firebase/auth";
 
   <RouterView v-if="usuario != null && usuario != 0" />
 
-  <menuNav v-if="usuario != null && usuario != 0" id="menuNav" class="fixed w-90% h-90% bg-blue-400 z-20" />
+  <menuNav v-if="usuario != null && usuario != 0" id="menuNav" class="fixed w-90% h-90% bg-blue-400 z-10" />
   
   
 </template>

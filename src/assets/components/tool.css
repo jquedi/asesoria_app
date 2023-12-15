@@ -1,0 +1,32 @@
+@import "./tools/clientes.css";
+
+.fondoOscurecido {
+    position: fixed;
+    width: 100%;
+    height: 102%;
+    top: -2%;
+    z-index: 11;
+    display: flex;
+}
+.tool {
+    background: theme('colores.fondo3');
+    box-shadow: theme('colores.boxShadow1');
+    border-radius: 20px;
+    width: 94%;
+    height: 96%;
+    top: 2%;
+    left: 3%;
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    align-items: center;
+    justify-content: center;
+    z-index: 12;
+}
+.mostrar {
+    display: flex;
+}
+.esconder {
+    display: none;
+}
