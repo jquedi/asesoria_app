@@ -1,0 +1,21 @@
+.botonAñadir {
+    position: absolute;
+    color: #007b05;
+    bottom: 4%;
+    right: 2%;
+    width: -moz-fit-content;
+    width: fit-content;
+    height: 35px;
+    font-size: 35px;
+    line-height: 35px;
+    z-index: 13;
+    background: #bbe5cc;
+    border-radius: 10px;
+    box-shadow: 0.5rem 1rem 1rem rgb(0 0 0 / 40%);
+    cursor: pointer;
+    overflow: hidden;
+}
+.simboloMas {
+    position: relative;
+    padding: 0px 8px 0px 8px;
+}

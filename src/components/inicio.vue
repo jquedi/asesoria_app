@@ -9,7 +9,7 @@ import clientes from './tools/clientesTools.vue'
       
       <utilidad class="utilidad" msg="todo_list" />
       <utilidad class="utilidad" msg="calendario" />
-      <utilidad class="utilidad" msg="clientes" />
+      <utilidad class="utilidad" msg="clientes" @click="clientesHidden = 'mostrar'" />
       <utilidad class="utilidad" id="notasDiv" msg="notas" />
       
       <utilidad class="utilidad" msg="archivo" />

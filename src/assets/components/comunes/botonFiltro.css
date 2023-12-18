@@ -1,0 +1,27 @@
+.botonFiltro {
+    position: absolute;
+    color: black;
+    top: 4%;
+    right: 2%;
+    width: -moz-fit-content;
+    width: fit-content;
+    height: 35px;
+    font-size: 20px;
+    line-height: 35px;
+    z-index: 13;
+    background: #c3c3c3;
+    border-radius: 10px;
+    box-shadow: 0.5rem 1rem 1rem rgb(0 0 0 / 40%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    overflow: hidden;
+}
+.iconoFiltro {
+    position: relative;
+    padding: 0px 15px 0px 15px;
+    border-right: none;
+    transition: 1s;
+    border-color: black;
+}

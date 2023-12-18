@@ -13,6 +13,12 @@
 
 @import "./components/comunes/botonCerrar.css";
 
+@import "./components/comunes/botonAñadir.css";
+
+@import "./components/comunes/botonFiltro.css";
+
+@import "./components/comunes/notificacionAlerta.css";
+
 @import "tailwindcss/utilities";
 
 #contenedorUtilidades {
