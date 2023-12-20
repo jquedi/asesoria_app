@@ -1,12 +1,3 @@
-<script setup>
-import resumenIcon from './icons/inicioIcon.vue'
-import estadisticasIcon from './icons/estadisticasIcon.vue'
-import facturarIcon from './icons/facturarIcon.vue'
-import ajustesIcon from './icons/ajustesIcon.vue'
-
-import { auth } from '/workspaces/asesoria_app/src/firebase.js';
-</script>
-
 <template>
     <div class="navigation">
         <ul>
@@ -40,7 +31,20 @@ import { auth } from '/workspaces/asesoria_app/src/firebase.js';
 </template>
 
 <script>
+import resumenIcon from './icons/inicioIcon.vue'
+import estadisticasIcon from './icons/estadisticasIcon.vue'
+import facturarIcon from './icons/facturarIcon.vue'
+import ajustesIcon from './icons/ajustesIcon.vue'
+
+import { auth } from '/workspaces/asesoria_app/src/firebase.js';
+
 export default {
+    components: {
+        resumenIcon,
+        estadisticasIcon,
+        facturarIcon,
+        ajustesIcon
+    },
     data() {
         return {
             activo: "resumen",

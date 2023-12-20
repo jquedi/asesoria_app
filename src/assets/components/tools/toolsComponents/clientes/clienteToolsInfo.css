@@ -4,6 +4,7 @@
     flex-direction: column;
     overflow: hidden;
     flex-wrap: nowrap;
+    color: white;
 }
 .clienteToolsInfoDatos {
     height: 40%;
@@ -15,13 +16,18 @@
     box-shadow: theme('colores.boxShadow1');
     border-radius: 20px;
 }
-.clienteToolsInfoDocs{
+.clienteToolsInfoDocs {
     height: 44%;
     width: 95%;
     flex-shrink: 0;
     background-color: theme('colores.fondo1');
     box-shadow: theme('colores.boxShadow1');
     border-radius: 20px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    overflow: auto;
 }
 .cajaFiltros {
     display: flex;
@@ -33,4 +39,27 @@
     padding: 15px;
     right: 0;
     top: 20%;
+    z-index: 1;
+}
+.miniaturaFacturaDiv {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 265px;
+    flex: none;
+    padding: 10px;
+    background-color: theme('colores.fondo3');
+    box-shadow: theme('colores.boxShadow1');
+    border-radius: 20px;
+    margin: 15px;
+}
+.miniaturaFacturaImg{
+    width: 70px;
+}
+.miniaturaFacturaDatos{
+    
+}
+.miniaturaFacturaDato{
+    
 }

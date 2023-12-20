@@ -1,17 +1,19 @@
-<script setup>
-    defineProps(['class'])
-    
-    const emit = defineEmits(['cerrar']);
-</script>
-
 <template>
-    <div :class="class" class="fondoOscurecido" @click="cerrar">
+    <div :class="classValue" class="fondoOscurecido" @click="cerrar">
     </div>
-    <div :class="class" class="tool">
+    <div :class="classValue" class="tool">
     </div>
 </template>
 <script>
 export default {
+    components: {
+    },
+    props: {
+        classValue: {
+            type: String,
+            default: ''
+        }
+    },
     data() {
         return {
         }
@@ -20,7 +22,7 @@ export default {
     },
     methods: {
         cerrar(){
-            this.emit('cerrar');
+            this.$emit('cerrar');
         }
     },
     mounted() {

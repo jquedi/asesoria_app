@@ -1,17 +1,3 @@
-<script setup>
-import todo_list from './utilityBox/todo_list.vue'
-import calendario from './utilityBox/calendario.vue'
-import clientes from './utilityBox/clientes.vue'
-import notas from './utilityBox/notas.vue'
-import archivo from './utilityBox/archivo.vue'
-defineProps({
-  msg: {
-    type: String,
-    required: true
-  }
-})
-</script>
-
 <template>
   <div>
     <div class="utilidad-content">
@@ -23,6 +9,41 @@ defineProps({
     </div>
   </div>
 </template>
+<script>
+import todo_list from './utilityBox/todo_list.vue'
+import calendario from './utilityBox/calendario.vue'
+import clientes from './utilityBox/clientes.vue'
+import notas from './utilityBox/notas.vue'
+import archivo from './utilityBox/archivo.vue'
+export default {
+    components: {
+        todo_list,
+        calendario,
+        clientes,
+        notas,
+        archivo
+    },
+    props: {
+        msg: {
+            type: String,
+            required: true
+        }
+    },
+    data() {
+        return {
+        }
+    },
+    watch: {
+    },
+    methods: {
+    },
+    mounted() {
+    },
+    created(){
+    }
+}
+</script>
+
 
 <style scoped>
 </style>

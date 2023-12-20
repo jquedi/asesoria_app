@@ -1,7 +1,3 @@
-<script setup>
-    defineProps(['valor'])
-</script>
-
 <template>
     <div class="notificacionAlerta" @click="añadir">
         <div class="valorNot">
@@ -11,6 +7,14 @@
 </template>
 <script>
 export default {
+    components: {
+    },
+    props: {
+        valor: {
+            type: String,
+            default: ''
+        }
+    },
     data() {
         return {
         }

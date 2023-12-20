@@ -2,10 +2,12 @@ import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
 import { getAnalytics } from "firebase/analytics";
+import { getStorage } from "firebase/storage";
 
-const firebaseConfig = {
+  const firebaseConfig = {
     apiKey: "AIzaSyCzb_e8lQ0NydgpkPEgX6TGZA_DCis1mD8",
     authDomain: "app-oficina-c264e.firebaseapp.com",
+    databaseURL: "https://app-oficina-c264e-default-rtdb.europe-west1.firebasedatabase.app",
     projectId: "app-oficina-c264e",
     storageBucket: "app-oficina-c264e.appspot.com",
     messagingSenderId: "237574994956",
@@ -15,8 +17,10 @@ const firebaseConfig = {
 
   
   const app = initializeApp(firebaseConfig);
+
   const analytics = getAnalytics(app);
   const db = getFirestore(app);
+  const storage = getStorage(app);
   const auth = getAuth(app);
   
-  export { db, auth, analytics };
+  export { db, auth, analytics, storage };

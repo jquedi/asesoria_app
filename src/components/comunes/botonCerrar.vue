@@ -1,7 +1,3 @@
-<script setup>
-    const emit = defineEmits(['cerrar']);
-</script>
-
 <template>
     <div class="botonCerrar" @click="cerrar">
         <div class="x">
@@ -14,6 +10,10 @@
 </template>
 <script>
 export default {
+    components: {
+    },
+    props: {
+    },
     data() {
         return {
         }
@@ -22,7 +22,7 @@ export default {
     },
     methods: {
         cerrar(){
-            this.emit('cerrar');
+            this.$emit('cerrar');
         }
     },
     mounted() {

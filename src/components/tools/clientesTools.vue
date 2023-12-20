@@ -1,24 +1,28 @@
-<script setup>
-    import cliente from './toolsComponents/clientes/clienteTools.vue';
-    import clienteInfo from './toolsComponents/clientes/clienteToolsInfo.vue';
-    import botonCerrar from '../comunes/botonCerrar.vue';
-
-    defineProps(['class']);
-    
-    const emit = defineEmits(['cerrar']);
-</script>
-
 <template>
-    <div :class="class" class="fondoOscurecido" @click="cerrar">
+    <div :class="classValue" class="fondoOscurecido" @click="cerrar">
     </div>
-    <div :class="class" class="tool">
+    <div :class="classValue" class="tool">
         <botonCerrar @cerrar="cerrar" />
         <cliente v-for="cliente in clientes" :key="cliente.id" :cliente="cliente" @click="clienteSelected = cliente, abrirCliente = true" />
         <clienteInfo v-if="abrirCliente" :cliente="clienteSelected" @cerrar="abrirCliente = false" />
     </div>
 </template>
 <script>
+import cliente from './toolsComponents/clientes/clienteTools.vue';
+import clienteInfo from './toolsComponents/clientes/clienteToolsInfo.vue';
+import botonCerrar from '../comunes/botonCerrar.vue';
 export default {
+    components: {
+        cliente,
+        clienteInfo,
+        botonCerrar
+    },
+    props: {
+        classValue: {
+            type: String,
+            default: ''
+        }
+    },
     data() {
         return {
             abrirCliente: false,
@@ -93,7 +97,7 @@ export default {
     },
     methods: {
         cerrar(){
-            this.emit('cerrar');
+            this.$emit('cerrar');
         }
     },
     mounted() {

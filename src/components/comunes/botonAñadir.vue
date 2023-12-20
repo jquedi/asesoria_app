@@ -1,7 +1,3 @@
-<script setup>
-    const emit = defineEmits(['añadir']);
-</script>
-
 <template>
     <div class="botonAñadir" @click="añadir">
         <div class="simboloMas">
@@ -11,6 +7,10 @@
 </template>
 <script>
 export default {
+    components: {
+    },
+    props: {
+    },
     data() {
         return {
         }
@@ -19,7 +19,7 @@ export default {
     },
     methods: {
         añadir(){
-            this.emit('añadir');
+            this.$emit('añadir');
         }
     },
     mounted() {

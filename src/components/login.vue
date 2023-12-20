@@ -1,11 +1,3 @@
-<script setup>
-import { db, auth } from '/workspaces/asesoria_app/src/firebase.js';
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { doc, getDoc } from "firebase/firestore";
-import { datosCliente } from '@/stores/counter';
-
-</script>
-
 <template>
     <div class="login">
         <div class="imagenLogin">
@@ -31,6 +23,11 @@ import { datosCliente } from '@/stores/counter';
 </template>
 
 <script>
+import { db, auth } from '/workspaces/asesoria_app/src/firebase.js';
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { doc, getDoc } from "firebase/firestore";
+import { datosCliente } from '@/stores/counter';
+
 export default {
     data() {
         return {

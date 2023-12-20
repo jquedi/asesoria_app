@@ -1,8 +1,3 @@
-<script setup>
-import utilidad from './utilidad.vue'
-import clientes from './tools/clientesTools.vue'
-</script>
-
 <template>
   <header>
     <div id="contenedorUtilidades">
@@ -14,12 +9,20 @@ import clientes from './tools/clientesTools.vue'
       
       <utilidad class="utilidad" msg="archivo" />
 
-      <clientes :class="clientesHidden" @cerrar="clientesHidden = 'esconder'" />
+      <clientes :classValue="clientesHidden" @cerrar="clientesHidden = 'esconder'" />
     </div>
   </header>
 </template>
 <script>
+import utilidad from './utilidad.vue'
+import clientes from './tools/clientesTools.vue'
 export default {
+    components: {
+      utilidad,
+      clientes
+    },
+    props: {
+    },
     data() {
         return {
           clientesHidden: 'mostrar',

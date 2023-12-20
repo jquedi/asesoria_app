@@ -1,15 +1,13 @@
-<script setup>
-</script>
 
 <template>
 <div class="notas-box">
-    <img class="fondoNota" src="src/assets/iconos/notes-icon.png" alt="">
+    <img class="fondoNota" src="@/assets/iconos/notes-icon.png" alt="">
     <svg class="text-notas2" viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg">
         <!-- Línea larga en la parte superior -->
         <path d="M20,45 Q100,5 70,30 T180,10" fill="none" stroke="black" stroke-linecap="round" stroke-width="2"/>
     </svg>
     <div class="fondoNota2">
-        <img style="position: absolute; bottom: 0%;" src="src/assets/iconos/notes-icon-recortado.png" alt="">
+        <img style="position: absolute; bottom: 0%;" src="@/assets/iconos/notes-icon-recortado.png" alt="">
         <svg class="text-notas" viewBox="0 0 200 30" xmlns="http://www.w3.org/2000/svg">
             <!-- Punto de la primera línea -->
             <circle cx="10" cy="15" r="3" fill="black"/>

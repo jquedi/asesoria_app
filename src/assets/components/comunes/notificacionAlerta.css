@@ -1,8 +1,8 @@
 .notificacionAlerta {
     position: absolute;
     color: white;
-    bottom: 4%;
-    top: -31px;
+    left: 10px;
+    top: -22px;
     width: -moz-fit-content;
     width: fit-content;
     height: 25px;

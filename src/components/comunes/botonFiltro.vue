@@ -1,7 +1,3 @@
-<script setup>
-    const emit = defineEmits(['abrirFiltro']);
-</script>
-
 <template>
     <div class="botonFiltro" @click="abrirFiltro">
         <div class="iconoFiltro">
@@ -11,6 +7,10 @@
 </template>
 <script>
 export default {
+    components: {
+    },
+    props: {
+    },
     data() {
         return {
         }
@@ -19,7 +19,7 @@ export default {
     },
     methods: {
         abrirFiltro(){
-            this.emit('abrirFiltro');
+            this.$emit('abrirFiltro');
         }
     },
     mounted() {
