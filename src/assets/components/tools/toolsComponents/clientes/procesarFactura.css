@@ -1,0 +1,54 @@
+.procesarFacDiv {
+    z-index: 20;
+    top: 0;
+    left: 0;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    display: block;
+    background: #334155;
+}
+.divFormProcesarFac {
+    height: 400px;
+    width: 500px;
+    background: aliceblue;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+.imgProcesarFac {
+    min-height: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+}
+.divFactura {
+    height: 100%;
+    position: absolute;
+    overflow: auto;
+}
+.botonAumentar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 21;
+    background: #0069ff;
+    border: none;
+    color: white;
+    font-size: 2rem;
+    border-radius: 20px;
+    cursor: pointer;
+}
+.botonReducir {
+    position: absolute;
+    top: 50px;
+    left: 0;
+    z-index: 21;
+    background: #0069ff;
+    border: none;
+    color: white;
+    padding: 0px 5px;
+    font-size: 2rem;
+    border-radius: 20px;
+    cursor: pointer;
+}
