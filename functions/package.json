@@ -14,10 +14,14 @@
   },
   "main": "index.js",
   "dependencies": {
-    "@google-cloud/documentai": "^8.1.1",
+    "@google-cloud/firestore": "^7.1.0",
+    "@google-cloud/storage": "^7.7.0",
     "@google-cloud/vision": "^4.0.2",
     "firebase-admin": "^11.8.0",
-    "firebase-functions": "^4.3.1"
+    "firebase-functions": "^4.3.1",
+    "pdf-lib": "^1.17.1",
+    "pdf2image": "^1.2.3",
+    "sharp": "^0.33.1"
   },
   "devDependencies": {
     "eslint": "^8.15.0",
