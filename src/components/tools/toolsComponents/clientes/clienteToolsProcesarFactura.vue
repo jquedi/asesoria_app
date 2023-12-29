@@ -42,16 +42,16 @@
                 <div class="campo">
                     <div class="tituloCampo">Tipo:</div>
                     <select style="width: 225px;" class="inputCampo" name="" id="" v-model="datosFac.factura.tipo">
-                        <option style="color: black;" value=""></option>
-                        <option style="color: black;" v-for="val in tipos" :value="val">
-                            {{ val }}
+                        <option style="color: black;" value=0></option>
+                        <option style="color: black;" v-for="(texto, clave) in tipos" :value="clave">
+                            {{ texto }}
                         </option>
                     </select>
                     <div class="tituloCampo">Especial:</div>
-                    <select style="width: 165px;" class="inputCampo" name="" id="" v-model="datosFac.factura.especial">
-                        <option style="color: black;" value=""></option>
-                        <option style="color: black;" v-for="val in especial" :value="val">
-                            {{ val }}
+                    <select style="width: 165px;" class="inputCampo" name="" id="" v-model="datosFac.factura.especial" @change="cambioEspecial(datosFac.factura.especial)">
+                        <option style="color: black;" value=0></option>
+                        <option style="color: black;" v-for="(texto, clave) in especial" :value="clave">
+                            {{ texto }}
                         </option>
                     </select>
                 </div>
@@ -61,7 +61,7 @@
                     <div class="tituloCampo">Fecha:</div>
                     <input style="width: 100px;" class="inputCampo" type="date" v-model="datosFac.factura.fecha">
                     <div class="tituloCampo">R.E. </div>
-                    <input class="inputCampo" type="checkbox" v-model="datosFac.factura.re">
+                    <input class="inputCampo" type="checkbox" v-model="datosFac.factura.re" @click="sincronicarRE()">
                 </div>
                 <div class="campoCompuesto">
                     <div class="titulosubCampo">BASES IMPONIBLES</div>
@@ -69,11 +69,11 @@
                         <div v-for="base in datosFac.factura.bases" class="subcampo">
                             <div class="campo">
                                 <div class="tituloCampo">{{ base.porcentaje }}%:</div>
-                                <input style="width: 70px;" class="inputCampo" type="number" v-model="base.valor">
+                                <input style="width: 70px;" class="inputCampo" type="number" v-model="base.valor" @change="calcularTotal()">
                             </div>
                             <div class="campo">
                                 <div class="tituloCampo">IVA: </div>
-                                <input style="width: 70px;" class="inputCampo" type="number" :value="base.valor*((base.porcentaje/100)+1)">
+                                <input style="width: 70px;" class="inputCampo" type="number" :value="base.valor*((base.porcentaje/100)+1)" @change="calcularTotal()">
                             </div>
                         </div>
                     </div>
@@ -83,14 +83,14 @@
                     <div class="subcamposDiv">
                         <div class="campo">
                             <div class="tituloCampo">Tipo:</div>
-                            <select style="width: 150px;" class="inputCampo" name="" id="" v-model="datosFac.factura.retencion.porcentaje">
+                            <select style="width: 150px;" class="inputCampo" name="" id="" v-model="retencion">
                                 <option style="color: black;" value=0></option>
-                                <option style="color: black;" v-for="retencion in retenciones" :value="retencion.valor">
-                                    {{ retencion.tipo }}
+                                <option style="color: black;" v-for="(retencion, clave) in retenciones" :value="clave">
+                                    {{ retencion[0] }}
                                 </option>
                             </select>
                             <div class="tituloCampo">Porcentaje:</div>
-                            <input style="width: 30px;" class="inputCampo" type="number" v-model="datosFac.factura.retencion.porcentaje">
+                            <input style="width: 30px;" class="inputCampo" type="number" v-model="datosFac.factura.retencion.porcentaje" @change="calcularTotal()">
                             <div class="total">TOTAL:</div>
                             <div class="totalCant">{{datosFac.factura.total}}</div>
                         </div>
@@ -101,6 +101,8 @@
     </div>
 </template>
 <script>
+import { db } from '/workspaces/asesoria_app/src/firebase.js';
+import { doc, getDoc } from "firebase/firestore";
 import botonCerrar from '@/components/comunes/botonCerrar.vue';
 export default {
     components: {
@@ -114,6 +116,7 @@ export default {
                 { tipo: 'Alquileres', valor: 19 },
                 { tipo: 'Profesionales', valor: 15 },
             ],
+            retencion: 0,
             actividades: [
                 { descripcion: 'Jardinero', iae: "08556" },
                 { descripcion: 'Cocinero', iae: "08542" },
@@ -152,6 +155,23 @@ export default {
         }
     },
     watch: {
+        'retencion': {
+            handler: function (val) {
+                if(val == 0){
+                    this.datosFac.factura.retencion.porcentaje = 0;
+                }else{
+                    this.datosFac.factura.retencion.porcentaje = this.retenciones[val][1];
+                }
+                this.calcularTotal();
+            },
+            deep: true
+        },
+        'datosFac.factura.re': {
+            handler: function () {
+                this.calcularTotal();
+            },
+            deep: true
+        },
     },
     methods: {
         cerrar(){
@@ -176,13 +196,73 @@ export default {
         },
         calcularTotal(){
             let total = 0;
+            let totalBases = 0;
             for(let i = 0; i < this.datosFac.factura.bases.length; i++){
-                total += this.datosFac.factura.bases[i][1];
+                totalBases += this.datosFac.factura.bases[i].valor;
+                total += this.datosFac.factura.bases[i].valor;
+                total += this.datosFac.factura.bases[i].valor * (this.datosFac.factura.bases[i].porcentaje/100);
+                if(this.datosFac.factura.re){
+                    total += this.datosFac.factura.bases[i].valor * (this.datosFac.factura.bases[i].rePor/100);
+                }
             }
-            this.datosFac.factura.total = total;
-        }
+            total -= totalBases * (this.datosFac.factura.retencion.porcentaje/100);
+            this.datosFac.factura.total = total.toFixed(2);
+        },
+        cambioEspecial(especial){
+            if(especial == 5){
+                this.datosFac.factura.re = true;
+            } else {
+                this.datosFac.factura.re = false;
+            }
+            this.calcularTotal();
+        },
+        sincronicarRE(){
+            if(!this.datosFac.factura.re){
+                this.datosFac.factura.especial = 5;
+            } else{
+                this.datosFac.factura.especial = 0;
+            }
+        },
+
+        // DESCARGAR VALORES SELECT
+        async listaTipos() {
+            const docRef = doc(db, "listasFacSelect", "tipos");
+            const docSnap = await getDoc(docRef);
+
+            if (docSnap.exists()) {
+                this.tipos = docSnap.data();
+                console.log(this.tipos);
+            } else {
+                console.log("No se ha encontrado la lista tipos.");
+            }
+        },
+        async listaEspecial() {
+            const docRef = doc(db, "listasFacSelect", "especial");
+            const docSnap = await getDoc(docRef);
+
+            if (docSnap.exists()) {
+                this.especial = docSnap.data();
+                console.log(this.especial);
+            } else {
+                console.log("No se ha encontrado la lista especial.");
+            }
+        },
+        async listaRetencion() {
+            const docRef = doc(db, "listasFacSelect", "retenciones");
+            const docSnap = await getDoc(docRef);
+
+            if (docSnap.exists()) {
+                this.retenciones = docSnap.data();
+                console.log(this.retenciones);
+            } else {
+                console.log("No se ha encontrado la lista retenciones.");
+            }
+        },
     },
     mounted() {
+        this.listaTipos();
+        this.listaEspecial();
+        this.listaRetencion();
     },
     created(){
     }
