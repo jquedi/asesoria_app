@@ -123,6 +123,7 @@ export default {
             ],
             tipos: [ 'Factura', 'Recibo', 'Abono'],
             especial: [ 'Exenta', 'Inversión del sujeto pasivo', 'Exportación'],
+
             datosFac: {
                 cliente: {
                     nombre: '',

@@ -31,17 +31,18 @@
                 <div class="miniaturaFacturaDiv" v-if="!filtros.procesado || !factura.procesado">
                     <notificacionAlerta style="top: -7px;right: 10px;left: auto;" v-if="!factura.procesado" :valor="'!'" />
                     <div class="miniaturaFacturaImg">
-                        <img src="@/assets/iconos/ejemploFac.jpeg" alt="">
+                        <!-- <img src="@/assets/iconos/ejemploFac.jpeg" alt=""> -->
+                        <img v-if="factura.imgUrls.length > 0" :src="factura.imgUrls[0]" alt="Miniatura de factura">
                     </div>
                     <div class="miniaturaFacturaDatos">
                         <div class="miniaturaFacturaDato">
-                            Nombre: <strong>{{ factura.datos.proveedor.nombre }}</strong>
+                            Proveedor: <strong>{{ factura.proveedor }}</strong>
                         </div>
                         <div class="miniaturaFacturaDato">
-                            Fecha: <strong>{{ factura.datos.factura.tiempo.fecha }}</strong>
+                            Fecha: <strong>{{ factura.fecha }}</strong>
                         </div>
                         <div class="miniaturaFacturaDato">
-                            Importe: <strong>{{ factura.datos.factura.importe.total }}</strong>
+                            Importe: <strong>{{ factura.total }}</strong>
                         </div>
                     </div>
                 </div>
@@ -52,9 +53,10 @@
     </div>
 </template>
 <script>
-import { ref as storageRef, uploadBytes } from 'firebase/storage';
+import { db } from '/workspaces/asesoria_app/src/firebase.js';
+import { getDownloadURL, ref as storageRef, uploadBytes } from 'firebase/storage';
 import { storage } from '/workspaces/asesoria_app/src/firebase.js'; // Asegúrate de exportar 'storage' desde tu archivo de configuración de Firebase.
-
+import { doc, setDoc, collection, getDocs, query, where } from 'firebase/firestore';
 
 import botonCerrar from '@/components/comunes/botonCerrar.vue';
 import botonFiltro from '@/components/comunes/botonFiltro.vue';
@@ -84,480 +86,30 @@ export default {
                 procesado: false,
             },
             archivosSubir: [],
+            modeloFac: {
+                texto: '',
+                img: [],
+                procesado: false,
+                cliente: '',
+                proveedor: '',
+                tipo: '',
+                especial: '',
+                numero: '',
+                fecha: '',
+                re: false,
+                bases: [
+                    { porcentaje: 21, valor: 0, rePor: 5.2 },
+                    { porcentaje: 10, valor: 0, rePor: 1.4 },
+                    { porcentaje: 4, valor: 0, rePor: 0.5 },
+                    { porcentaje: 0, valor: 0, rePor: 0 },
+                    { porcentaje: 5, valor: 0, rePor: 0.62 }
+                ],
+                retencion: {
+                    porcentaje: 0
+                },
+                total: 0
+            },
             facturas:{
-                1: {
-                    procesado: true,
-                    datos:{
-                        proveedor:{
-                            nif: '12345678A',
-                            nombre: 'Maderas S.A.',
-                            postal: '12345',
-                        },
-                        factura:{
-                            tiempo: {
-                                fecha: '2023-11-30',
-                                periodo: '4T',
-                                ejercicio: '2023',
-                            },
-                            info: {
-                                Numerofactura: '123456',
-                                tipo: 'COMPRAS',
-                                especial: '',
-                                actividad: 'Actividad',
-                                adicional: '',
-                            },
-                            importe: {
-                                total: '1000',
-                                bases: {
-                                    base1: [21, 1000],
-                                    base2: [10, 0],
-                                    base3: [4, 0],
-                                    base4: [0, 0],
-                                },
-                                retencion: {
-                                    tipo: 'ALQUILERES',
-                                    porcentaje: '19',
-                                },
-                                recargos: {
-                                    5.20: '0',
-                                    1.40: '0',
-                                    0.50: '0',
-                                },
-
-                            },
-                        }
-                    },
-                },
-                2: {
-                    procesado: true,
-                    datos:{
-                        proveedor:{
-                            nif: '12345678A',
-                            nombre: 'Maderas S.A.',
-                            postal: '12345',
-                        },
-                        factura:{
-                            tiempo: {
-                                fecha: '2023-11-30',
-                                periodo: '4T',
-                                ejercicio: '2023',
-                            },
-                            info: {
-                                Numerofactura: '123456',
-                                tipo: 'COMPRAS',
-                                especial: '',
-                                actividad: 'Actividad',
-                                adicional: '',
-                            },
-                            importe: {
-                                total: '1000',
-                                bases: {
-                                    base1: [21, 1000],
-                                    base2: [10, 0],
-                                    base3: [4, 0],
-                                    base4: [0, 0],
-                                },
-                                retencion: {
-                                    tipo: 'ALQUILERES',
-                                    porcentaje: '19',
-                                },
-                                recargos: {
-                                    5.20: '0',
-                                    1.40: '0',
-                                    0.50: '0',
-                                },
-
-                            },
-                        }
-                    },
-                },
-                3: {
-                    procesado: false,
-                    datos:{
-                        proveedor:{
-                            nif: '12345678A',
-                            nombre: 'Maderas S.A.',
-                            postal: '12345',
-                        },
-                        factura:{
-                            tiempo: {
-                                fecha: '2023-11-30',
-                                periodo: '4T',
-                                ejercicio: '2023',
-                            },
-                            info: {
-                                Numerofactura: '123456',
-                                tipo: 'COMPRAS',
-                                especial: '',
-                                actividad: 'Actividad',
-                                adicional: '',
-                            },
-                            importe: {
-                                total: '1000',
-                                bases: {
-                                    base1: [21, 1000],
-                                    base2: [10, 0],
-                                    base3: [4, 0],
-                                    base4: [0, 0],
-                                },
-                                retencion: {
-                                    tipo: 'ALQUILERES',
-                                    porcentaje: '19',
-                                },
-                                recargos: {
-                                    5.20: '0',
-                                    1.40: '0',
-                                    0.50: '0',
-                                },
-
-                            },
-                        }
-                    },
-                },
-                4: {
-                    procesado: false,
-                    datos:{
-                        proveedor:{
-                            nif: '12345678A',
-                            nombre: 'Maderas S.A.',
-                            postal: '12345',
-                        },
-                        factura:{
-                            tiempo: {
-                                fecha: '2023-11-30',
-                                periodo: '4T',
-                                ejercicio: '2023',
-                            },
-                            info: {
-                                Numerofactura: '123456',
-                                tipo: 'COMPRAS',
-                                especial: '',
-                                actividad: 'Actividad',
-                                adicional: '',
-                            },
-                            importe: {
-                                total: '1000',
-                                bases: {
-                                    base1: [21, 1000],
-                                    base2: [10, 0],
-                                    base3: [4, 0],
-                                    base4: [0, 0],
-                                },
-                                retencion: {
-                                    tipo: 'ALQUILERES',
-                                    porcentaje: '19',
-                                },
-                                recargos: {
-                                    5.20: '0',
-                                    1.40: '0',
-                                    0.50: '0',
-                                },
-
-                            },
-                        }
-                    },
-                },
-                5: {
-                    procesado: false,
-                    datos:{
-                        proveedor:{
-                            nif: '12345678A',
-                            nombre: 'Maderas S.A.',
-                            postal: '12345',
-                        },
-                        factura:{
-                            tiempo: {
-                                fecha: '2023-11-30',
-                                periodo: '4T',
-                                ejercicio: '2023',
-                            },
-                            info: {
-                                Numerofactura: '123456',
-                                tipo: 'COMPRAS',
-                                especial: '',
-                                actividad: 'Actividad',
-                                adicional: '',
-                            },
-                            importe: {
-                                total: '1000',
-                                bases: {
-                                    base1: [21, 1000],
-                                    base2: [10, 0],
-                                    base3: [4, 0],
-                                    base4: [0, 0],
-                                },
-                                retencion: {
-                                    tipo: 'ALQUILERES',
-                                    porcentaje: '19',
-                                },
-                                recargos: {
-                                    5.20: '0',
-                                    1.40: '0',
-                                    0.50: '0',
-                                },
-
-                            },
-                        }
-                    },
-                },
-                6: {
-                    procesado: false,
-                    datos:{
-                        proveedor:{
-                            nif: '12345678A',
-                            nombre: 'Maderas S.A.',
-                            postal: '12345',
-                        },
-                        factura:{
-                            tiempo: {
-                                fecha: '2023-11-30',
-                                periodo: '4T',
-                                ejercicio: '2023',
-                            },
-                            info: {
-                                Numerofactura: '123456',
-                                tipo: 'COMPRAS',
-                                especial: '',
-                                actividad: 'Actividad',
-                                adicional: '',
-                            },
-                            importe: {
-                                total: '1000',
-                                bases: {
-                                    base1: [21, 1000],
-                                    base2: [10, 0],
-                                    base3: [4, 0],
-                                    base4: [0, 0],
-                                },
-                                retencion: {
-                                    tipo: 'ALQUILERES',
-                                    porcentaje: '19',
-                                },
-                                recargos: {
-                                    5.20: '0',
-                                    1.40: '0',
-                                    0.50: '0',
-                                },
-
-                            },
-                        }
-                    },
-                },
-                7: {
-                    procesado: false,
-                    datos:{
-                        proveedor:{
-                            nif: '12345678A',
-                            nombre: 'Maderas S.A.',
-                            postal: '12345',
-                        },
-                        factura:{
-                            tiempo: {
-                                fecha: '2023-11-30',
-                                periodo: '4T',
-                                ejercicio: '2023',
-                            },
-                            info: {
-                                Numerofactura: '123456',
-                                tipo: 'COMPRAS',
-                                especial: '',
-                                actividad: 'Actividad',
-                                adicional: '',
-                            },
-                            importe: {
-                                total: '1000',
-                                bases: {
-                                    base1: [21, 1000],
-                                    base2: [10, 0],
-                                    base3: [4, 0],
-                                    base4: [0, 0],
-                                },
-                                retencion: {
-                                    tipo: 'ALQUILERES',
-                                    porcentaje: '19',
-                                },
-                                recargos: {
-                                    5.20: '0',
-                                    1.40: '0',
-                                    0.50: '0',
-                                },
-
-                            },
-                        }
-                    },
-                },
-                8: {
-                    procesado: false,
-                    datos:{
-                        proveedor:{
-                            nif: '12345678A',
-                            nombre: 'Maderas S.A.',
-                            postal: '12345',
-                        },
-                        factura:{
-                            tiempo: {
-                                fecha: '2023-11-30',
-                                periodo: '4T',
-                                ejercicio: '2023',
-                            },
-                            info: {
-                                Numerofactura: '123456',
-                                tipo: 'COMPRAS',
-                                especial: '',
-                                actividad: 'Actividad',
-                                adicional: '',
-                            },
-                            importe: {
-                                total: '1000',
-                                bases: {
-                                    base1: [21, 1000],
-                                    base2: [10, 0],
-                                    base3: [4, 0],
-                                    base4: [0, 0],
-                                },
-                                retencion: {
-                                    tipo: 'ALQUILERES',
-                                    porcentaje: '19',
-                                },
-                                recargos: {
-                                    5.20: '0',
-                                    1.40: '0',
-                                    0.50: '0',
-                                },
-
-                            },
-                        }
-                    },
-                },
-                9: {
-                    procesado: false,
-                    datos:{
-                        proveedor:{
-                            nif: '12345678A',
-                            nombre: 'Maderas S.A.',
-                            postal: '12345',
-                        },
-                        factura:{
-                            tiempo: {
-                                fecha: '2023-11-30',
-                                periodo: '4T',
-                                ejercicio: '2023',
-                            },
-                            info: {
-                                Numerofactura: '123456',
-                                tipo: 'COMPRAS',
-                                especial: '',
-                                actividad: 'Actividad',
-                                adicional: '',
-                            },
-                            importe: {
-                                total: '1000',
-                                bases: {
-                                    base1: [21, 1000],
-                                    base2: [10, 0],
-                                    base3: [4, 0],
-                                    base4: [0, 0],
-                                },
-                                retencion: {
-                                    tipo: 'ALQUILERES',
-                                    porcentaje: '19',
-                                },
-                                recargos: {
-                                    5.20: '0',
-                                    1.40: '0',
-                                    0.50: '0',
-                                },
-
-                            },
-                        }
-                    },
-                },
-                10: {
-                    procesado: false,
-                    datos:{
-                        proveedor:{
-                            nif: '12345678A',
-                            nombre: 'Maderas S.A.',
-                            postal: '12345',
-                        },
-                        factura:{
-                            tiempo: {
-                                fecha: '2023-11-30',
-                                periodo: '4T',
-                                ejercicio: '2023',
-                            },
-                            info: {
-                                Numerofactura: '123456',
-                                tipo: 'COMPRAS',
-                                especial: '',
-                                actividad: 'Actividad',
-                                adicional: '',
-                            },
-                            importe: {
-                                total: '1000',
-                                bases: {
-                                    base1: [21, 1000],
-                                    base2: [10, 0],
-                                    base3: [4, 0],
-                                    base4: [0, 0],
-                                },
-                                retencion: {
-                                    tipo: 'ALQUILERES',
-                                    porcentaje: '19',
-                                },
-                                recargos: {
-                                    5.20: '0',
-                                    1.40: '0',
-                                    0.50: '0',
-                                },
-
-                            },
-                        }
-                    },
-                },
-                11: {
-                    procesado: false,
-                    datos:{
-                        proveedor:{
-                            nif: '12345678A',
-                            nombre: 'Maderas S.A.',
-                            postal: '12345',
-                        },
-                        factura:{
-                            tiempo: {
-                                fecha: '2023-11-30',
-                                periodo: '4T',
-                                ejercicio: '2023',
-                            },
-                            info: {
-                                Numerofactura: '123456',
-                                tipo: 'COMPRAS',
-                                especial: '',
-                                actividad: 'Actividad',
-                                adicional: '',
-                            },
-                            importe: {
-                                total: '1000',
-                                bases: {
-                                    base1: [21, 1000],
-                                    base2: [10, 0],
-                                    base3: [4, 0],
-                                    base4: [0, 0],
-                                },
-                                retencion: {
-                                    tipo: 'ALQUILERES',
-                                    porcentaje: '19',
-                                },
-                                recargos: {
-                                    5.20: '0',
-                                    1.40: '0',
-                                    0.50: '0',
-                                },
-
-                            },
-                        }
-                    },
-                },
             }
         }
     },
@@ -585,6 +137,44 @@ export default {
             }
             this.contSinProcesar = cont;
         },
+
+
+        // DESCARGAR LISTA DE FACTURAS
+        async listaFacts() {
+            const colRef = collection(db, "facturas");
+            const q = query(colRef, where("cliente", "==", this.cliente.nif));
+
+            const querySnapshot = await getDocs(q);
+
+            if (!querySnapshot.empty) {
+                const facturaPromises = querySnapshot.docs.map(async (doc) => {
+                    const data = doc.data();
+                    const imgRefs = data.img.map((imgName) => {
+                        const fileRef = storageRef(storage, `facturas/${imgName}`);
+                        return getDownloadURL(fileRef); // Obtiene la URL de descarga
+                    });
+
+                    // Resuelve todas las promesas de getDownloadURL para obtener las URLs reales
+                    const imgUrls = await Promise.all(imgRefs);
+                    return {
+                        ...data,
+                        imgUrls // Agrega las URLs al objeto de la factura
+                    };
+                });
+
+                // Espera a que todas las promesas de las facturas se resuelvan
+                this.facturas = await Promise.all(facturaPromises);
+                console.log(this.facturas);
+                this.contarSinProcesar();   
+            } else {
+                console.log("No se han encontrado facturas.");
+            }
+        },
+
+
+
+        // SUBIR FACTURAS
+
         seleccionarArchivos(event) {
             this.archivosSeleccionados = event.target.files;
         },
@@ -595,10 +185,18 @@ export default {
                 const storagePath = `facturas/${uniqueIdentifier}`; // Ruta con el identificador único
 
                 const fileRef = storageRef(storage, storagePath);
-                
+
+                const datos = this.modeloFac;
+                datos.procesado = false;
+                datos.cliente = this.cliente.nif;
+                datos.img = [uniqueIdentifier];
+
                 try {
                 const snapshot = await uploadBytes(fileRef, file);
                 console.log(`Archivo ${file.name} subido con éxito como ${uniqueIdentifier}`);
+                const docRef = doc(db, "facturas", uniqueIdentifier);
+                await setDoc(docRef, datos);
+                console.log(`Documento ${uniqueIdentifier} creado con éxito`);
                 } catch (error) {
                 console.error(`Error subiendo el archivo ${file.name}:`, error);
                 }
@@ -608,7 +206,7 @@ export default {
         },
     },
     mounted() {
-        this.contarSinProcesar();
+        this.listaFacts();
     },
     created(){
     }
