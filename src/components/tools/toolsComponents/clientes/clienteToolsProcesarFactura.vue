@@ -231,7 +231,6 @@ export default {
 
             if (docSnap.exists()) {
                 this.tipos = docSnap.data();
-                console.log(this.tipos);
             } else {
                 console.log("No se ha encontrado la lista tipos.");
             }
@@ -242,7 +241,6 @@ export default {
 
             if (docSnap.exists()) {
                 this.especial = docSnap.data();
-                console.log(this.especial);
             } else {
                 console.log("No se ha encontrado la lista especial.");
             }
@@ -253,7 +251,6 @@ export default {
 
             if (docSnap.exists()) {
                 this.retenciones = docSnap.data();
-                console.log(this.retenciones);
             } else {
                 console.log("No se ha encontrado la lista retenciones.");
             }

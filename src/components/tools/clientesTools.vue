@@ -8,6 +8,9 @@
     </div>
 </template>
 <script>
+import { db } from '/workspaces/asesoria_app/src/firebase.js';
+import { collection, getDocs } from "firebase/firestore";
+
 import cliente from './toolsComponents/clientes/clienteTools.vue';
 import clienteInfo from './toolsComponents/clientes/clienteToolsInfo.vue';
 import botonCerrar from '../comunes/botonCerrar.vue';
@@ -98,9 +101,26 @@ export default {
     methods: {
         cerrar(){
             this.$emit('cerrar');
-        }
+        },
+
+        // DESCARGAR CLIENTES
+        async listaClientes() {
+            const colRef = collection(db, "clientes");
+            const querySnapshot = await getDocs(colRef);
+
+            if (!querySnapshot.empty) {
+                this.clientes = querySnapshot.docs.map(doc => ({
+                    nif: doc.id, // Incluye el ID del documento si es necesario
+                    ...doc.data()
+                }));
+                console.log(this.clientes);
+            } else {
+                console.log("No se han encontrado clientes.");
+            }
+        },
     },
     mounted() {
+        this.listaClientes();
     },
     created(){
     }

@@ -14,9 +14,9 @@
             </div>
             
             <div class="datosClienteToolSub">
-                <div class="datosClienteToolSub2">{{cliente.actividad}}</div>
-                <div class="datosClienteToolSub2">{{cliente.cnae}}</div>
-                <div class="datosClienteToolSub3">{{cliente.iae}}</div>
+                <div class="datosClienteToolSub2">{{cliente.tipo}}</div>
+                <div class="datosClienteToolSub2">{{cliente.CNAE}}</div>
+                <div class="datosClienteToolSub3">{{cliente.IAE}}</div>
             </div>
         </div>
     </div>
