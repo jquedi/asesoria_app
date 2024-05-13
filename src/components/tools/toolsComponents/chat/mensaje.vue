@@ -1,19 +1,26 @@
 <template>
-    <div v-if="valor != ''" class="notificacionAlerta" @click="añadir">
-        <div class="valorNot">
-            {{ valor }}
-        </div>
+    <div :class="tipo">
+        {{ texto }}
+        <p class="hora">{{ hora }}</p>
     </div>
 </template>
 <script>
-export default { 
+export default {
     components: {
     },
     props: {
-        valor: {
+        tipo: {
             type: String,
             default: ''
         },
+        texto: {
+            type: String,
+            default: ''
+        },
+        hora: {
+            type: String,
+            default: ""
+        }
     },
     data() {
         return {

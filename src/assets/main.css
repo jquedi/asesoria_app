@@ -11,6 +11,8 @@
 
 @import "./components/tool.css";
 
+@import "./components/comunes/trespuntosBoton.css";
+
 @import "./components/comunes/botonCerrar.css";
 
 @import "./components/comunes/botonAñadir.css";

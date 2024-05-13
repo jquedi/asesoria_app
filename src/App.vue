@@ -56,6 +56,7 @@ export default {
           if (docSnap.exists()) {
               // Aquí tienes acceso al nombre de usuario almacenado en Firestore.
               datosCliente().cambiarNombre(docSnap.data().nombre);
+              datosCliente().cambiarUsuario(docSnap.data().usuario);
               this.usuarioAuth();
               // Procede a la siguiente parte de tu aplicación.
           } else {

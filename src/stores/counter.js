@@ -13,9 +13,13 @@ export const useCounterStore = defineStore('counter', () => {
 
 export const datosCliente = defineStore('datosCliente', () => {
   const nombre = ref(null)
+  const usuario = ref(null)
   function cambiarNombre(val){
     nombre.value = val
   }
+  function cambiarUsuario(val){
+    usuario.value = val
+  }
 
-  return {nombre, cambiarNombre}
+  return {nombre, usuario, cambiarNombre, cambiarUsuario}
 })

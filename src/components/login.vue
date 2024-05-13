@@ -69,7 +69,8 @@ export default {
 
             if (docSnap.exists()) {
                 // Aquí tienes acceso al nombre de usuario almacenado en Firestore.
-                this.datos.cambiarNombre(docSnap.data().nombre);
+                this.datos.cambiarNombre(docSnap.data().nombre); 
+                this.datos.cambiarUsuario(docSnap.data().usuario); 
                 this.$emit('positiveAuth', true);
                 // Procede a la siguiente parte de tu aplicación.
             } else {

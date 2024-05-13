@@ -1,4 +1,6 @@
 @import "./tools/clientesTools.css";
+@import "./tools/chatTools.css";
+@import "./tools/ToDoListTools.css";
 
 .fondoOscurecido {
     position: fixed;
@@ -26,8 +28,8 @@
     z-index: 12;
 }
 .mostrar {
-    display: flex;
+    display: flex !important;
 }
 .esconder {
-    display: none;
+    display: none !important;
 }

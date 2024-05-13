@@ -1,0 +1,332 @@
+.todolistUsuarios {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 75px;
+    width: 100%;
+    background: theme(f.10);
+    padding-left: 20px;
+}
+.todolistUsuario {
+    float: left;
+    width: 50px;
+    padding-top: 0%;
+    shape-outside: circle();
+    -webkit-clip-path: circle();
+    clip-path: circle();
+    background: theme(c.300);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+.todolistfiltroIcono {
+    height: 30px;
+    position: absolute;
+    top: 100px;
+    left: 15px;
+    cursor: pointer;
+    z-index: 37;
+}
+.todolistContenedor {
+    position: absolute;
+    top: 75px;
+    width: 100%;
+    height: calc(100% - 75px);
+    background: theme(f.100);
+    overflow-y: auto;
+    padding-bottom: 30px;
+}
+.todolistContenedor p {
+    margin: 30px 10px 30px 93px;
+    color: white;
+    font-size: 18px;
+    text-decoration: underline;
+    font-weight: 800;
+}
+.todolistTarea {
+    width: 80%;
+    margin-left: 10%;
+    border-radius: 35px;
+}
+.todolistTarea2 {
+    margin-top: 25px;
+    width: 100%;
+    height: 100px;
+    background: theme(c.700);
+    border-radius: 35px;
+}
+.todolistCampoTarea {
+    height: 100%;
+    text-align: center;
+    padding-top: 8px;
+    color: white;
+    cursor: pointer;
+}
+.todolistCampoTareaTitulo {
+    font-weight: 700;
+    padding: 0px 5px;
+}
+.nosaltodelinea {
+    white-space: nowrap;
+}
+.todolistCampoTareaCont {
+    font-size: 12px;
+    height: 55px;
+}
+
+.todolistActualizaciones {
+    position: relative;
+    background: theme(c.900);
+    width: 100%;
+    top: -30px;
+    margin-bottom: -30px;
+    border-radius: 0px 0px 20px 20px;
+    padding: 50px;
+}
+
+.todolistActualizacion {
+    margin-top: 40px;
+}
+
+.todolistActualizacionTitulo {
+    width: fit-content;
+    padding: 6px 10px 0px 10px;
+    border: solid 2px white;
+    border-bottom: none;
+    border-radius: 10px 10px 0px 0px;
+    color: white;
+}
+
+.todolistActualizacionCuerpo {
+    padding: 10px 10px 10px 10px;
+    border: solid 2px white;
+    border-radius: 0px 10px 10px 10px;
+    color: white;
+}
+
+.todolistFormAñadir {
+    overflow-y: auto;
+    position: absolute;
+    z-index: 50;
+    height: 90%;
+    width: 90%;
+    left: 5%;
+    background: theme(c.400);
+    border-radius: 20px;
+    padding: 75px 25px 100px 25px;
+    box-shadow: theme('colores.boxShadow1');
+}
+
+.todolistBotonAñadir {
+    position: fixed;
+    color: #000000;
+    bottom: 12%;
+    right: 30%;
+    padding: 0px 5px;
+    width: -moz-fit-content;
+    width: fit-content;
+    height: 35px;
+    font-size: 23px;
+    line-height: 35px;
+    z-index: 13;
+    background: #bbe5cc;
+    border-radius: 10px;
+    box-shadow: 0.5rem 1rem 1rem rgb(0 0 0 / 40%);
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.todolistBotonCerrar {
+    position: fixed;
+    color: #ffffff;
+    bottom: 12%;
+    left: 30%;
+    padding: 0px 5px;
+    width: -moz-fit-content;
+    width: fit-content;
+    height: 35px;
+    font-size: 23px;
+    line-height: 35px;
+    z-index: 13;
+    background: #a70d0d;
+    border-radius: 10px;
+    box-shadow: 0.5rem 1rem 1rem rgb(0 0 0 / 40%);
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.todolistFormAñadir .titulo{
+    font-size: 27px;
+    text-decoration: underline;
+    position: absolute;
+    left: 25px;
+    top: 10px;
+    font-weight: 900;
+}
+
+.todolistFormAñadir .grupo .tag {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    border-bottom: solid;
+}
+
+.todolistFormAñadir .grupo input {
+    border-radius: 5px;
+    padding: 1px 4px;
+}
+
+.todolistFormAñadir .grupo {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.todolistFormAñadirUsuarioInput {
+    background: #ffffff;
+    border-radius: 5px;
+    padding: 1px 4px;
+    text-align: justify;
+}
+
+.opcionesTarea {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    right: 30px;
+    top: 13px;
+    background: white;
+    padding: 10px;
+    border: solid;
+    border-radius: 10px;
+    gap: 5px;
+}
+
+.todolistAñadirActualizacionesButton {
+    position: absolute;
+    color: #000000;
+    top: 47px;
+    left: 245px;
+    padding: 0px 1px;
+    width: -moz-fit-content;
+    width: fit-content;
+    height: 37px;
+    font-size: 22px;
+    line-height: 0px;
+    z-index: 13;
+    background: #bbe5cc;
+    box-shadow: 0.5rem 1rem 1rem rgb(0 0 0 / 40%);
+    cursor: pointer;
+    overflow: hidden;
+    clip-path: circle();
+    -webkit-clip-path: circle();
+}
+
+.todolistAñadirActualizacionesTextarea {
+    position: absolute;
+    z-index: 30;
+    top: 73px;
+    left: 264px;
+    background: theme(c.400);
+    padding: 15px;
+    border-radius: 0px 20px 20px 20px;
+}
+
+.todolistAñadirActualizacionesTextareaGuardar {
+    position: relative;
+    color: #000000;
+    padding: 0px 2px;
+    width: -moz-fit-content;
+    width: fit-content;
+    height: 25px;
+    font-size: 15px;
+    line-height: 0px;
+    z-index: 30;
+    background: #bbe5cc;
+    border-radius: 10px;
+    box-shadow: 0.5rem 1rem 1rem rgb(0 0 0 / 40%);
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.todolistAñadirActualizacionesTextareaCancelar {
+    position: relative;
+    color: #ffffff;
+    padding: 0px 2px;
+    width: -moz-fit-content;
+    width: fit-content;
+    height: 25px;
+    font-size: 15px;
+    line-height: 0px;
+    z-index: 30;
+    background: #a70d0d;
+    border-radius: 10px;
+    box-shadow: 0.5rem 1rem 1rem rgb(0 0 0 / 40%);
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.todolistfiltroForm {
+    color: black;
+    background: theme(c.300);
+    position: absolute;
+    top: 75px;
+    height: calc(100% - 75px);
+    width: 300px;
+    z-index: 35;
+}
+.todolistfiltroForm .grupo {
+    margin-bottom: 15px;
+    margin-left: 20px;
+    font-size: 14px;
+    font-weight: 500;
+}
+.todolistfiltroForm h1 {
+    margin-top: 20px;
+    margin-left: 50px;
+    margin-bottom: 20px;
+    font-size: 25px;
+    font-weight: 700;
+    text-decoration: underline;
+}
+
+.botonRestablecer {
+    background: aliceblue;
+    padding: 4px;
+    border: solid 1px;
+    border-radius: 10px;
+}
+
+.todolistConfirmarBorradoFondo {
+    position: fixed;
+    top: 0%;
+    height: 100%;
+    width: 100%;
+    z-index: 100;
+    background: theme(f.100);
+    opacity: 0.7;
+}
+
+.todolistConfirmarBorrado {
+    position: fixed;
+    width: 20%;
+    height: 20%;
+    background: white;
+    top: 40%;
+    right: 40%;
+    border-radius: 20px;
+    z-index: 101;
+}
+
+.todolistConfirmarBorrado p {
+    margin: 10px;
+}
+.todolistConfirmarBorrado .todolistBotonAñadir {
+    bottom: 43%;
+    right: 43%;
+}
+.todolistConfirmarBorrado .todolistBotonCerrar { 
+    bottom: 43%;
+    left: 43%;
+}

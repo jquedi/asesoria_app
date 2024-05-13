@@ -1,0 +1,188 @@
+@import "./toolsComponents/chat/mensajes.css";
+
+
+.chatUsuariosLista {
+    height: 100%;
+    width: 5%;
+    left: 0;
+    border: solid;
+    border-width: 0 3px 0 0;
+    border-color: black;
+}
+.chatLista {
+    height: 100%;
+    border: solid;
+    border-width: 0 3px 0 0;
+    border-color: black;
+    min-width: 200px;
+}
+.chatHeader {
+    width: 100%;
+    border: solid;
+    border-width: 0 3px 3px 0;
+    border-color: black;
+}
+.chatChat {
+    width: 100%;
+    border: solid;
+    border-width: 0 3px 0 0;
+    border-color: black;
+    padding-bottom: 10px;
+}
+#chat-container{
+    overflow: auto;
+}
+.chatAsistente {
+    height: 100%;
+    min-width: 350px;
+}
+
+.chatCajaTexto {
+    width: 100%;
+    height: fit-content;
+    background: theme('colores.fondo1');
+}
+.chatInput {
+    border: 1px solid #ccc;
+    font-family: inherit;
+    font-size: inherit;
+    padding: 15px 45px 15px 6px;
+    margin: 2% 5%;
+    resize: none;
+    background: theme('colores.fondo3');
+    color: theme('colores.fuente1');
+    display: block;
+    width: 90%;
+    overflow: auto;
+    min-height: 40px;
+    max-height: 150px;
+    line-height: 20px;
+    border-radius: 10px;
+}
+.chatBotonEnviar {
+    cursor: pointer;
+    height: 30%;
+    position: absolute;
+    right: 6%;
+    top: 34%;
+    max-height: 35px;
+}
+
+
+.chatUsuario {
+    float: left;
+    width: 80%;
+    padding-top: 15%;
+    padding-bottom: 15%;
+    margin: auto;
+    shape-outside: circle();
+    -webkit-clip-path: circle();
+    clip-path: circle();
+    background: lightblue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+
+.chatMinimizarFlecha1 {
+    position: sticky;
+    height: 40px;
+    width: 20px;
+    top: calc(50% - 20px);
+    left: 1%;
+    transition: 1s;
+    cursor: pointer;
+    z-index: 2;
+}
+.chatMinimizarFlecha2 {
+    position: sticky;
+    height: 40px;
+    width: 20px;
+    top: calc(50% - 20px);
+    left: 97%;
+    transition: 1s;
+    cursor: pointer;
+    z-index: 2;
+}
+
+
+
+.chatMinimizarLateralIz1 {
+    position: absolute;
+    background: rgb(199, 214, 255);
+    height: 5px;
+    width: 20px;
+    border-radius: 10px;
+    top: calc(50% - 10px);
+    transform: rotateZ(90deg);
+    transition: 1s;
+}
+.chatMinimizarLateralIz2 {
+    position: absolute;
+    background: rgb(199, 214, 255);
+    height: 5px;
+    width: 20px;
+    border-radius: 10px;
+    top: calc(50% + 5px);
+    transform: rotateZ(90deg);
+    transition: 1s;
+}
+.chatMinimizarLateralDch1{
+    position: absolute;
+    background: rgb(199, 214, 255);
+    height: 5px;
+    width: 20px;
+    border-radius: 10px;
+    top: calc(50% - 10px);
+    transform: rotateZ(90deg);
+    transition: 1s;
+
+}
+.chatMinimizarLateralDch2{
+    position: absolute;
+    background: rgb(199, 214, 255);
+    height: 5px;
+    width: 20px;
+    border-radius: 10px;
+    top: calc(50% + 5px);
+    transform: rotateZ(90deg);
+    transition: 1s;
+
+}
+
+.chatMinimizarFlecha1:hover .chatMinimizarLateralIz1{
+    transition: 1s;
+    transform: rotateZ(115deg);
+}
+.chatMinimizarFlecha1:hover .chatMinimizarLateralIz2{
+    transition: 1s;
+    transform: rotateZ(67deg);
+}
+.chatMinimizarFlecha2:hover .chatMinimizarLateralIz1{
+    transition: 1s;
+    transform: rotateZ(115deg);
+}
+.chatMinimizarFlecha2:hover .chatMinimizarLateralIz2{
+    transition: 1s;
+    transform: rotateZ(67deg);
+}
+
+.chatMinimizarFlecha2:hover .chatMinimizarLateralDch1{
+    transition: 1s;
+    transform: rotateZ(67deg);
+}
+.chatMinimizarFlecha2:hover .chatMinimizarLateralDch2{
+    transition: 1s;
+    transform: rotateZ(115deg);
+}
+
+.chatMinimizarFlecha1:hover .chatMinimizarLateralDch1{
+    transition: 1s;
+    transform: rotateZ(67deg);
+}
+.chatMinimizarFlecha1:hover .chatMinimizarLateralDch2{
+    transition: 1s;
+    transform: rotateZ(115deg);
+}
